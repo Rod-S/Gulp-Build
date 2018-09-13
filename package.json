@@ -1,0 +1,28 @@
+{
+  "name": "unit-8---gulp-build",
+  "version": "1.0.0",
+  "description": "Preparing a Gulp build process for deployment with provided HTML, SCSS, JPEGs, PNGs, and JavaScript Files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rod-S/Unit-8---Gulp-Build.git"
+  },
+  "author": "Rod-S",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rod-S/Unit-8---Gulp-Build/issues"
+  },
+  "homepage": "https://github.com/Rod-S/Unit-8---Gulp-Build#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.1"
+  }
+}
