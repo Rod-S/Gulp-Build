@@ -22,6 +22,15 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('dist/js'));
 });
 
+gulp.task('styles', function() {
+    return gulp.src("sass/global.scss")
+    .pipe(maps.init())
+    .pipe(sass({outputStyle: 'compressed'}))
+    .pipe(rename('all.min.css'))
+    .pipe(maps.write('./'))
+    .pipe(gulp.dest('dist/css'));
+});
+
 gulp.task('clean', function() {
-  del(['js/all.min.js', 'js/all.min.js.map', 'dist'])
+  del(['dist'])
 });
