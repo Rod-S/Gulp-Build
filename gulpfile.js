@@ -24,7 +24,7 @@ gulp.task('scripts', ['clean'], function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('styles' , ['clean'], function() {
+gulp.task('styles', function() {
     return gulp.src("sass/global.scss")
     .pipe(maps.init())
     .pipe(sass({outputStyle: 'compressed'}))
@@ -40,8 +40,7 @@ gulp.task('images', ['clean'], function() {
 });
 
 gulp.task('watchFiles', function() {
-  gulp.watch('dist/scss/**/*.scss', ['styles']);
-  gulp.watch('js/main.js', ['scripts']);
+  gulp.watch('sass/**/*.scss', ['styles']);
 })
 
 gulp.task('clean', function() {
