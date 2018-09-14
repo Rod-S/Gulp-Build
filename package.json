@@ -20,6 +20,7 @@
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.6.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.1",
     "gulp-smushit": "^1.2.0",

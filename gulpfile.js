@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     maps = require('gulp-sourcemaps'),
      del = require('del'),
- smushit = require('gulp-smushit');
+ smushit = require('gulp-smushit'),
+ connect = require('gulp-connect')
 
 gulp.task('scripts', ['clean'], function() {
     return gulp.src([
@@ -38,10 +39,19 @@ gulp.task('images', ['clean'], function() {
     .pipe(gulp.dest('dist/content'))
 });
 
+gulp.task('watchFiles', function() {
+  gulp.watch('dist/scss/**/*.scss', ['styles']);
+  gulp.watch('js/main.js', ['scripts']);
+})
+
 gulp.task('clean', function() {
   del(['dist/**'])
 });
 
 gulp.task("build", ['clean', 'scripts', 'styles', 'images']);
 
-gulp.task("default", ["build"]);
+gulp.task("serve",["build", 'watchFiles'], function() {
+  connect.server({port:3000});
+});
+
+gulp.task("default", ["build", "serve"]);
