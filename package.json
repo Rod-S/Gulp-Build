@@ -25,5 +25,6 @@
     "gulp-smushit": "^1.2.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.1"
-  }
+  },
+  "dependencies": {}
 }

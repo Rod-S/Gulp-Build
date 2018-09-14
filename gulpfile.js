@@ -6,9 +6,10 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     maps = require('gulp-sourcemaps'),
-     del = require('del');
+     del = require('del'),
+ smushit = require('gulp-smushit');
 
-gulp.task('scripts', function() {
+gulp.task('scripts', ['clean'], function() {
     return gulp.src([
       'js/circle/autogrow.js',
       'js/circle/circle.js',
@@ -22,7 +23,7 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('styles', function() {
+gulp.task('styles' , ['clean'], function() {
     return gulp.src("sass/global.scss")
     .pipe(maps.init())
     .pipe(sass({outputStyle: 'compressed'}))
@@ -31,6 +32,16 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('clean', function() {
-  del(['dist'])
+gulp.task('images', ['clean'], function() {
+    return gulp.src("images/*.{jpg,png}")
+    .pipe(smushit())
+    .pipe(gulp.dest('dist/content'))
 });
+
+gulp.task('clean', function() {
+  del(['dist/**'])
+});
+
+gulp.task("build", ['clean', 'scripts', 'styles', 'images']);
+
+gulp.task("default", ["build"]);
