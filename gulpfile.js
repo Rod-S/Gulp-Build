@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     maps = require('gulp-sourcemaps'),
      del = require('del'),
  smushit = require('gulp-smushit'),
- connect = require('gulp-connect')
+ connect = require('gulp-connect'),
+      fs = require('fs');
 
 gulp.task('scripts', ['clean'], function() {
     return gulp.src([
@@ -44,7 +45,9 @@ gulp.task('watchFiles', function() {
 })
 
 gulp.task('clean', function() {
-  del(['dist/**'])
+  if (fs.existsSync('dist')) {
+  del.sync(['dist/**/*']);
+  fs.rmdir('dist', function() {});}
 });
 
 gulp.task("build", ['clean', 'scripts', 'styles', 'images']);
