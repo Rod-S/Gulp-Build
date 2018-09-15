@@ -1,15 +1,17 @@
 "use strict";
 
 var gulp = require('gulp'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
-  rename = require('gulp-rename'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     maps = require('gulp-sourcemaps'),
-     del = require('del'),
- smushit = require('gulp-smushit'),
- connect = require('gulp-connect'),
-      fs = require('fs');
+    del = require('del'),
+    smushit = require('gulp-smushit'),
+    connect = require('gulp-connect'),
+    fs = require('fs'),
+    rimraf = require('rimraf'),
+    deleteEmpty = require('delete-empty');
 
 gulp.task('scripts', ['clean'], function() {
     return gulp.src([
@@ -45,9 +47,13 @@ gulp.task('watchFiles', function() {
 })
 
 gulp.task('clean', function() {
-  if (fs.existsSync('dist')) {
-  del.sync(['dist/**/*']);
-  fs.rmdir('dist', function() {});}
+  rimraf('dist', function() {
+    if (fs.existsSync('dist')) {
+      fs.unlinkSync('dist');
+      fs.rmdirSync('dist');
+      deleteEmpty('dist');
+    }
+  });
 });
 
 gulp.task("build", ['clean', 'scripts', 'styles', 'images']);
