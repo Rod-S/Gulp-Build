@@ -54,13 +54,13 @@ gulp.task('images', function() {
 //run styles to recompile/reminify when changes detected
 //run livereload to refresh browser
 gulp.task('watchFiles', function() {
-  livereload.reload();
-  gulp.watch('sass/**/*.scss', ['styles']);
+    livereload.reload();
+    gulp.watch('sass/**/*.scss', ['styles']);
 });
 
 //Remove dist folder for necessary tasks
 gulp.task('clean', function() {
-  rimraf('dist/*', function() {
+    rimraf('dist/*', function() {
     if (fs.existsSync('dist')) {
       del('dist/*');
     }
@@ -69,15 +69,16 @@ gulp.task('clean', function() {
 
 //run and complete clean task; followed by scripts, styles and images in parallel
 gulp.task("build", function() {
-  return runSeq('clean', ['scripts', 'styles', 'images']);
+    return runSeq('clean', ['scripts', 'styles', 'images']);
 });
 
-//serve app on localhost:3000 with livereload enabled to automatically refresh changes
+//serve app on localhost:3000 with livereload enabled to auto-refresh watchFiles changes
 gulp.task("serve", ["images", 'watchFiles'], function() {
-  connect.server({
-    port:3000,
-    livereload: true
-  });
+    connect.server({
+      port:3000,
+      livereload: true
+    });
 });
+
 //default gulp task to run build and serve tasks
 gulp.task("default", ["build", "serve"]);
