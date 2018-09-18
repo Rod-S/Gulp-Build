@@ -1,5 +1,7 @@
 # Using Gulp to Build a Front End Website
 
+This project uses Gulp and other node dependencies to deploy a front-end website.
+
 From the command line run:
 
 $ npm install
