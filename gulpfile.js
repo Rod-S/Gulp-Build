@@ -58,7 +58,7 @@ gulp.task('watchFiles', function() {
     gulp.watch('sass/**/*.scss', ['styles']);
 });
 
-//Remove dist folder for necessary tasks
+//Remove dist sub-directories for necessary tasks
 gulp.task('clean', function() {
     rimraf('dist/*', function() {
     if (fs.existsSync('dist')) {
