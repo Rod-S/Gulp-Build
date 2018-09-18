@@ -39,7 +39,7 @@ gulp.task('styles', function() {
     .pipe(rename('all.min.css'))
     .pipe(maps.write('./'))
     .pipe(gulp.dest('dist/css'))
-    .pipe(livereload({start: true}));
+    .pipe(livereload());
 });
 
 //optimize jpg and png images inside /images with smushit()
@@ -69,11 +69,14 @@ gulp.task('clean', function() {
 
 //run and complete clean task; followed by scripts, styles and images in parallel
 gulp.task("build", function() {
-    return runSeq('clean', ['scripts', 'styles', 'images']);
+    return runSeq('clean', ['scripts', 'styles', 'images'], function() {
+      console.log('"build" task complete.')
+    });
 });
 
 //serve app on localhost:3000 with livereload enabled to auto-refresh watchFiles changes
 gulp.task("serve", ["images", 'watchFiles'], function() {
+    livereload.listen();
     connect.server({
       port:3000,
       livereload: true
