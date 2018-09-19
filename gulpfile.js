@@ -1,13 +1,11 @@
 "use strict";
 //node modules/dependencies
-var fs = require('fs'),
-    gulp = require('gulp'),
+var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     maps = require('gulp-sourcemaps'),
-    rimraf = require('rimraf'),
     del = require('del'),
     connect = require('gulp-connect'),
     livereload = require('gulp-livereload'),
@@ -65,12 +63,9 @@ gulp.task('watchFiles', function() {
 
 //Remove dist sub-directories for necessary tasks
 gulp.task('clean', function() {
-    rimraf('dist/*', function() {
-    if (fs.existsSync('dist')) {
       del('dist/*');
-    }
-  });
 });
+
 
 //run and complete clean task; followed by scripts, styles and images in parallel
 gulp.task("build", function() {
