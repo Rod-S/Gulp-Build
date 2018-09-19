@@ -27,7 +27,7 @@ gulp.task('scripts', function() {
     .pipe(uglify())
     .pipe(rename('all.min.js'))
     .pipe(maps.write('./'))
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('dist/scripts'));
 });
 
 //compile/concatenate sass to css and minify with addt'l source map file
@@ -38,7 +38,7 @@ gulp.task('styles', function() {
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(rename('all.min.css'))
     .pipe(maps.write('./'))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('dist/styles'))
     .pipe(livereload());
 });
 
@@ -47,6 +47,11 @@ gulp.task('styles', function() {
 gulp.task('images', function() {
     return gulp.src("images/*.{jpg,png}")
     .pipe(smushit())
+    .on('error', function(error) {
+      //log smushit errors
+      console.log('There was an error with the "images" task.' + '\n' + error.plugin + ' : ' + error.message + '\n' + 'Continuing with build.' );
+      this.emit('end');
+    })
     .pipe(gulp.dest('dist/content'));
 });
 
