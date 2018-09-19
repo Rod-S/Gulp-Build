@@ -4,7 +4,6 @@ var fs = require('fs'),
     gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    smushit = require('gulp-smushit'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     maps = require('gulp-sourcemaps'),
@@ -12,6 +11,7 @@ var fs = require('fs'),
     del = require('del'),
     connect = require('gulp-connect'),
     livereload = require('gulp-livereload'),
+    imagemin = require('gulp-imagemin'),
     runSeq = require('run-sequence');
 
 //compile, concat, minify js files with addt'l source map file
@@ -46,7 +46,7 @@ gulp.task('styles', function() {
 //send to /dist/content
 gulp.task('images', function() {
     return gulp.src("images/*.{jpg,png}")
-    .pipe(smushit())
+    .pipe(imagemin())
     .on('error', function(error) {
       //log smushit errors
       console.log('There was an error with the "images" task.' + '\n' + error.plugin + ' : ' + error.message + '\n' + 'Continuing with build.' );
