@@ -40,9 +40,15 @@ gulp.task('styles', function() {
     .pipe(livereload());
 });
 
+//copy icons directory to dist/content
+gulp.task('icons', function() {
+  return gulp.src('icons/**')
+  .pipe(gulp.dest('dist/icons'));
+});
+
 //optimize jpg and png images inside /images with smushit()
 //send to /dist/content
-gulp.task('images', function() {
+gulp.task('images', ['icons'], function() {
     return gulp.src("images/*.{jpg,png}")
     .pipe(imagemin())
     .on('error', function(error) {
