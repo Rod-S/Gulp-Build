@@ -4,8 +4,9 @@ This project uses Gulp and other node dependencies to deploy a front-end website
 
 From the command line run:
 
+$ npm install -g gulp-cli //needed to run gulp commands through CLI
 $ npm install
-$ gulp
+$ gulp //deploy build
 
 console will log on successful deployment:
 
